@@ -1,0 +1,25 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import HeroSection from "../components/HeroSection.astro";
+import CourseInfo from "../components/CourseInfo.astro";
+import CourseRequirements from "../components/CourseRequirements.astro";
+import CourseDescription from "../components/CourseDescription.astro";
+import CallToAction from "../components/CallToAction.astro";
+---
+
+<Navbar />
+<div class="bg-white text-white min-h-screen p-6">
+  <HeroSection />
+  <CourseInfo />
+  <CourseRequirements />
+  <CourseDescription />
+</div>
+<CallToAction />
+
+<style scoped>
+  /**** Tailwind CSS maneja los estilos ****/
+</style>
+
+<style>
+</style>
