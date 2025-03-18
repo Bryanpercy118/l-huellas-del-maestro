@@ -3,43 +3,35 @@ import astroLogo from "../assets/astro.svg";
 import background from "../assets/background.svg";
 import "../styles/global.css";
 import logo from "../assets/logo.png";
-
 ---
 
 <div
   class="overflow-auto w-screen h-screen bg-no-repeat bg-cover bg-center bg-[url('/src/assets/huellas.png')]"
 >
-  <header class="lg:px-16 px-4 flex flex-wrap items-center py-4 ">
-	<div class="flex-1 flex justify-end items-center md:justify-between">
-		<img
-		  src="/logo.png"
-		  alt="Logo de Huellas del Maestro"
-		  class="w-32 md:w-48"
-		/>
-	  </div>
-	  
-
-    <!-- <label for="menu-toggle" class="pointer-cursor md:hidden block">
-      <svg
-        class="fill-current text-gray-600"
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-      >
-        <title>menu</title>
-        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-      </svg>
-    </label>
-    <input class="hidden" type="checkbox" id="menu-toggle" /> -->
-
+  <header class="lg:px-16 px-4 flex flex-wrap items-center py-4">
+    <div class="flex-1 flex justify-end items-center md:justify-between">
+      <img
+        src="/logo.png"
+        alt="Logo de Huellas del Maestro"
+        class="w-32 md:w-48"
+      />
+    </div>
     <div class="hidden md:flex md:items-center md:w-auto w-full" id="menu">
       <nav>
         <ul
           class="md:flex items-center justify-between text-lg font-bold text-gray-600 pt-4 md:pt-0"
         >
-          <li><a class="md:p-4 py-3 px-0 block hover:text-blue-800" href="https://huellasdelmaestro.com/">Inicio</a></li>
-          <li><a class="md:p-4 py-3 px-0 block hover:text-blue-800" href="https://huellasdelmaestro.com/tienda-huellas-del-maestro-simulador-musica-cocha-molina/">Tienda</a></li>
+          <li>
+            <a
+              class="md:p-4 py-3 px-0 block hover:text-blue-800"
+              href="https://huellasdelmaestro.com/">Inicio</a>
+          </li>
+          <li>
+            <a
+              class="md:p-4 py-3 px-0 block hover:text-blue-800"
+              href="https://huellasdelmaestro.com/tienda-huellas-del-maestro-simulador-musica-cocha-molina/"
+              >Tienda</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -59,68 +51,162 @@ import logo from "../assets/logo.png";
         </h1>
         <h1>HOY</h1>
       </div>
+
+      <!-- BOTÓN QUE ABRE EL MODAL -->
       <div
-        class="w-full flex items-center justify-between mt-6 py-1 px-4 uppercase bg-green-500 rounded-sm"
+        id="openModalBtn"
+        class="w-full flex items-center justify-between mt-6 py-1 px-4 uppercase bg-green-500 rounded-sm cursor-pointer"
       >
-        <h3 class="text-white text-lg font-semibold">adquiere el curso</h3>
+        <h3 class="text-white text-lg font-semibold">Adquiere el curso</h3>
         <div class="w-[40%] flex items-center text-gray-700 text-4xl gap-0">
           <hr class="w-full border border-gray-700 relative -right-3" />
           <ion-icon name="chevron-forward"></ion-icon>
         </div>
       </div>
+
       <p
         class="text-md text-white bg-black/60 font-semibold mt-1 rounded-lg p-2 text-justify"
       >
-        Bienvenido a Huellas del Maestro <br> por el Maestro Cocha Molina aprende
-		<br> a tocar el acordeon por medio de <br> nuestro simulador virtual.
+        Bienvenido a Huellas del Maestro <br />
+        por el Maestro Cocha Molina aprende <br />
+        a tocar el acordeón por medio de <br />
+        nuestro simulador virtual.
       </p>
     </div>
 
     <div>
       <ul class="text-3xl text-white">
-        <li
-          class="flex  p-1 bg-black/40 rounded-full h-10"
-        >
-			<a href="https://www.facebook.com/huellasdelmaestrocm" target="_blank" rel="noopener noreferrer">
-				<ion-icon name="logo-facebook" class="text-white text"></ion-icon>
-		  	</a>
+        <li class="flex p-1 bg-black/40 rounded-full h-10">
+          <a
+            href="https://www.facebook.com/huellasdelmaestrocm"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ion-icon name="logo-facebook" class="text-white text"></ion-icon>
+          </a>
         </li>
-        <li
-          class="flex  p-1 bg-black/40 rounded-full mt-2 h-10"
-        >
-			<a href="https://www.instagram.com/elcochamolina/?hl=es" target="_blank" rel="noopener noreferrer">
-          		<ion-icon name="logo-instagram"></ion-icon>
-			</a>
+        <li class="flex p-1 bg-black/40 rounded-full mt-2 h-10">
+          <a
+            href="https://www.instagram.com/elcochamolina/?hl=es"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ion-icon name="logo-instagram"></ion-icon>
+          </a>
         </li>
-        <li
-          class="flex  p-1 bg-black/40 rounded-full mt-2 h-10"
-        >
-			<a href="https://api.whatsapp.com/send?phone=573157384040&text=Estoy%20interesado%20en%20el%20curso%20de%20acordeón%20con%20el%20Cocha"
-				target="_blank" 
-				rel="noopener noreferrer">
-				<ion-icon name="logo-whatsapp"></ion-icon>
-			</a>
+        <li class="flex p-1 bg-black/40 rounded-full mt-2 h-10">
+          <a
+            href="https://api.whatsapp.com/send?phone=573157384040&text=Estoy%20interesado%20en%20el%20curso%20de%20acordeón%20con%20el%20Cocha"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <ion-icon name="logo-whatsapp"></ion-icon>
+          </a>
         </li>
       </ul>
-      <li
-        class="text-white justify-center items-center text-lg flex  p-1 bg-black/40 rounded-full mt-2 h-10"
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div
+    id="modal"
+    class="fixed inset-0 bg-black/30 backdrop-blur-md flex justify-center items-center hidden transition-opacity duration-300 ease-in-out"
+  >
+    <div
+      class="bg-white p-6 rounded-xl w-full max-w-md shadow-xl transform scale-95 transition-transform duration-300 ease-in-out opacity-0"
+      id="modal-content"
+    >
+      <!-- Botón de cierre -->
+      <button
+        id="closeModalBtn"
+        class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-sm"
       >
-	  <a href="https://www.tiktok.com/@huellasdelmaestro" target="_blank" rel="noopener noreferrer">
-        <ion-icon name="logo-tiktok"></ion-icon>
-	  </a>
-      </li>
+        ✖
+      </button>
+
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">
+        Regístrate para el curso
+      </h2>
+
+      <form class="space-y-4">
+        <div>
+          <label class="block text-gray-600 font-medium">Nombre</label>
+          <input
+            type="text"
+            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
+            placeholder="Tu nombre"
+          />
+        </div>
+
+        <div>
+          <label class="block text-gray-600 font-medium"
+            >Correo Electrónico</label
+          >
+          <input
+            type="email"
+            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
+            placeholder="tucorreo@email.com"
+          />
+        </div>
+
+        <div>
+          <label class="block text-gray-600 font-medium">Teléfono</label>
+          <input
+            type="text"
+            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
+            placeholder="Tu número de teléfono"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-green-600 transition"
+        >
+          Enviar
+        </button>
+      </form>
     </div>
   </div>
 </div>
 
+<!-- SCRIPTS -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("modal");
+    const modalContent = document.getElementById("modal-content");
+    const openModalBtn = document.getElementById("openModalBtn");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+
+    openModalBtn.addEventListener("click", function () {
+      modal.classList.remove("hidden");
+      setTimeout(() => {
+        modal.classList.remove("opacity-0");
+        modalContent.classList.remove("scale-95");
+        modalContent.classList.add("scale-100", "opacity-100");
+      }, 10);
+    });
+
+    closeModalBtn.addEventListener("click", function () {
+      modalContent.classList.remove("scale-100", "opacity-100");
+      modalContent.classList.add("scale-95", "opacity-0");
+      setTimeout(() => {
+        modal.classList.add("hidden");
+      }, 200);
+    });
+
+    // Cerrar modal si el usuario hace clic fuera del contenido
+    modal.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        closeModalBtn.click();
+      }
+    });
+  });
+</script>
+
+<!-- Íconos de Ionicons -->
 <script
   type="module"
   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script
   nomodule
   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<style scoped>
-  /**** Tailwind CSS maneja los estilos ****/
-</style>
-
-<style></style>
