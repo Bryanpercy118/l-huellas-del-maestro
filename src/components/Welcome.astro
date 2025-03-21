@@ -179,6 +179,18 @@ import logo from "../assets/logo.png";
   </div>
 </div>
 
+<!-- Modal de Confirmación -->
+<div id="confirmation-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center hidden">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-sm text-center">
+    <div id="confirmation-message"></div>
+    <button onclick="document.getElementById('confirmation-modal').classList.add('hidden')"
+      class="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition">
+      Aceptar
+    </button>
+  </div>
+</div>
+
+
 <!-- SCRIPTS -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -186,9 +198,12 @@ import logo from "../assets/logo.png";
     const modalContent = document.getElementById("modal-content");
     const openModalBtn = document.getElementById("openModalBtn");
     const closeModalBtn = document.getElementById("closeModalBtn");
+    const confirmationModal = document.getElementById("confirmation-modal");
+    const confirmationMessage = document.getElementById("confirmation-message");
     const form = modal.querySelector("form");
 
-    const webhookURL = "https://script.google.com/macros/s/AKfycbyg4Vv4wsL_TwRrCP16-2iKSDuJxCJj1kddN8GBLQ4-YdGMNDYWEvljTbK40qlvXZQS/exec";
+    const webhookURL = "https://script.google.com/macros/s/AKfycbyg4Vv4wsL_TwRrCP16-2iKSDuJxCJj1kddN8GBLQ4-YdGMNDYWEvljTbK40qlvXZQS/exec"; // Reemplaza con tu URL
+
     openModalBtn.addEventListener("click", function () {
       modal.classList.remove("hidden");
       setTimeout(() => {
@@ -213,7 +228,7 @@ import logo from "../assets/logo.png";
       }
     });
 
-    // 👇 Enviar datos a Google Sheets
+    // 👇 Enviar datos a Google Sheets y mostrar mensaje de éxito
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
 
@@ -228,14 +243,25 @@ import logo from "../assets/logo.png";
       }
 
       try {
-        const res = await fetch(webhookURL, {
+        await fetch(webhookURL, {
           method: "POST",
           body: JSON.stringify({ nombre, correo, telefono, ciudad }),
           headers: { "Content-Type": "application/json" },
-          mode: "no-cors", // 🔥 Evita problemas de CORS con Google Apps Script
+          mode: "no-cors",
         });
 
-        alert("¡Formulario enviado con éxito!");
+        // 🔥 Mostrar modal de confirmación
+        confirmationMessage.innerHTML = `
+          <h2 class="text-xl font-bold text-gray-800">¡Formulario enviado con éxito!</h2>
+          <p class="text-gray-600 mt-2">Pronto nos contactaremos contigo.</p>
+        `;
+        confirmationModal.classList.remove("hidden");
+
+        // Ocultar modal de confirmación después de 3 segundos
+        setTimeout(() => {
+          confirmationModal.classList.add("hidden");
+        }, 3000);
+
         form.reset();
         closeModalBtn.click();
       } catch (error) {
