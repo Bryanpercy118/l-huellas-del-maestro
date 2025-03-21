@@ -129,6 +129,7 @@ import logo from "../assets/logo.png";
       </h2>
 
       <form class="space-y-4">
+        <!-- Nombre -->
         <div>
           <label class="block text-gray-600 font-medium">Nombre</label>
           <input
@@ -137,18 +138,18 @@ import logo from "../assets/logo.png";
             placeholder="Tu nombre"
           />
         </div>
-
+      
+        <!-- Correo Electrónico -->
         <div>
-          <label class="block text-gray-600 font-medium"
-            >Correo Electrónico</label
-          >
+          <label class="block text-gray-600 font-medium">Correo Electrónico</label>
           <input
             type="email"
             class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
             placeholder="tucorreo@email.com"
           />
         </div>
-
+      
+        <!-- Teléfono -->
         <div>
           <label class="block text-gray-600 font-medium">Teléfono</label>
           <input
@@ -157,7 +158,16 @@ import logo from "../assets/logo.png";
             placeholder="Tu número de teléfono"
           />
         </div>
-
+        <!-- Ciudad -->
+        <div>
+          <label class="block text-gray-600 font-medium">Ciudad de donde nos escribe</label>
+          <input
+            type="text"
+            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
+            placeholder="Tu ciudad"
+          />
+        </div>
+        <!-- Botón de envío -->
         <button
           type="submit"
           class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold text-lg hover:bg-green-600 transition"
@@ -176,13 +186,16 @@ import logo from "../assets/logo.png";
     const modalContent = document.getElementById("modal-content");
     const openModalBtn = document.getElementById("openModalBtn");
     const closeModalBtn = document.getElementById("closeModalBtn");
+    const form = modal.querySelector("form");
 
+    const webhookURL = "https://script.google.com/macros/s/AKfycbyg4Vv4wsL_TwRrCP16-2iKSDuJxCJj1kddN8GBLQ4-YdGMNDYWEvljTbK40qlvXZQS/exec";
     openModalBtn.addEventListener("click", function () {
       modal.classList.remove("hidden");
       setTimeout(() => {
         modal.classList.remove("opacity-0");
         modalContent.classList.remove("scale-95");
         modalContent.classList.add("scale-100", "opacity-100");
+        modalContent.querySelector("input").focus();
       }, 10);
     });
 
@@ -194,14 +207,46 @@ import logo from "../assets/logo.png";
       }, 200);
     });
 
-    // Cerrar modal si el usuario hace clic fuera del contenido
     modal.addEventListener("click", function (event) {
       if (event.target === modal) {
         closeModalBtn.click();
       }
     });
+
+    // 👇 Enviar datos a Google Sheets
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const nombre = form.querySelector('input[placeholder="Tu nombre"]').value.trim();
+      const correo = form.querySelector('input[type="email"]').value.trim();
+      const telefono = form.querySelector('input[placeholder="Tu número de teléfono"]').value.trim();
+      const ciudad = form.querySelector('input[placeholder="Tu ciudad"]').value.trim();
+
+      if (!nombre || !correo || !telefono || !ciudad) {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
+
+      try {
+        const res = await fetch(webhookURL, {
+          method: "POST",
+          body: JSON.stringify({ nombre, correo, telefono, ciudad }),
+          headers: { "Content-Type": "application/json" },
+          mode: "no-cors", // 🔥 Evita problemas de CORS con Google Apps Script
+        });
+
+        alert("¡Formulario enviado con éxito!");
+        form.reset();
+        closeModalBtn.click();
+      } catch (error) {
+        console.error(error);
+        alert("Error de red o de servidor.");
+      }
+    });
   });
 </script>
+
+
 
 <!-- Íconos de Ionicons -->
 <script
